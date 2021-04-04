@@ -10,7 +10,7 @@ package rubric.eva;
 
 /**
  *
- * @author DELL
+ * @author ridsa
  */
 public class form5 extends javax.swing.JFrame {
 
