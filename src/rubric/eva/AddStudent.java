@@ -5,14 +5,24 @@
  */
 package rubric.eva;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.jar.Attributes.Name;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author ridsa
  */
 public class AddStudent extends javax.swing.JFrame {
+    
+    
+    SimpleDateFormat dateformat = new SimpleDateFormat(" MM / dd / YYYY ");
+    Date date = new Date();
+    Calendar cal = Calendar.getInstance();
+    DefaultTableModel model ;
+
     
      private String action;
      private String name;
@@ -25,6 +35,12 @@ public class AddStudent extends javax.swing.JFrame {
      */
     public AddStudent() {
         initComponents();
+        
+           model = (DefaultTableModel) table.getModel();
+        datetf.setText( " " +dateformat.format(date));
+     
+        
+        
         String Action = null;
         String Name = null;
         String RegNo = null;
@@ -44,8 +60,8 @@ public class AddStudent extends javax.swing.JFrame {
              titleLbl.setText(" ADD A STUDENT");
              actionButton.setText(" ADD");
              
-              nameTxtField.setText(n.getName());
-              regTxtField.setText(r.getRegno());
+              nametf.setText(n.getName());
+              regtf.setText(r.getRegno());
               
            
         }
@@ -59,8 +75,8 @@ public class AddStudent extends javax.swing.JFrame {
              titleLbl.setText(" UPDATE A STUDENT");
              actionButton.setText("UPDATE");
              
-              nameTxtField.setText(n.getName());
-              regTxtField.setText(r.getRegno());
+              nametf.setText(n.getName());
+              regtf.setText(r.getRegno());
               
            
         }
@@ -73,12 +89,12 @@ public class AddStudent extends javax.swing.JFrame {
             this.regno = RegNo;
              titleLbl.setText("DELETE A STUDENT");
               actionButton.setText("Delete");
-              nameTxtField.setText(n.getName());
-              regTxtField.setText(r.getRegno());
+              nametf.setText(n.getName());
+              regtf.setText(r.getRegno());
               
              
-             nameTxtField.setEnabled(false);
-              regTxtField.setEnabled(false);
+             nametf.setEnabled(false);
+              regtf.setEnabled(false);
              
         }
         }
@@ -103,11 +119,11 @@ public class AddStudent extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        regTxtField = new javax.swing.JTextField();
-        nameTxtField = new javax.swing.JTextField();
+        datetf = new javax.swing.JTextField();
+        regtf = new javax.swing.JTextField();
+        nametf = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         actionButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
@@ -127,19 +143,19 @@ public class AddStudent extends javax.swing.JFrame {
 
         jLabel4.setText("DATE");
 
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        datetf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                datetfActionPerformed(evt);
             }
         });
 
-        nameTxtField.addActionListener(new java.awt.event.ActionListener() {
+        nametf.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameTxtFieldActionPerformed(evt);
+                nametfActionPerformed(evt);
             }
         });
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -155,7 +171,7 @@ public class AddStudent extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(table);
 
         actionButton.setBackground(new java.awt.Color(0, 0, 0));
         actionButton.setForeground(new java.awt.Color(255, 255, 255));
@@ -198,7 +214,7 @@ public class AddStudent extends javax.swing.JFrame {
                         .addGap(38, 38, 38)
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(datetf, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(37, 37, 37)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -213,8 +229,8 @@ public class AddStudent extends javax.swing.JFrame {
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                             .addComponent(regnoSearchBtn)
                                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(nameTxtField, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                                                .addComponent(regTxtField, javax.swing.GroupLayout.Alignment.LEADING)))
+                                                .addComponent(nametf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
+                                                .addComponent(regtf, javax.swing.GroupLayout.Alignment.LEADING)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                                         .addComponent(actionButton, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -238,18 +254,18 @@ public class AddStudent extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(titleLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(datetf, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(nameTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(nametf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addComponent(actionButton)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(regTxtField, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(regtf, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -276,16 +292,22 @@ public class AddStudent extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void datetfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_datetfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_datetfActionPerformed
 
-    private void nameTxtFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameTxtFieldActionPerformed
+    private void nametfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nametfActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_nameTxtFieldActionPerformed
+    }//GEN-LAST:event_nametfActionPerformed
 
     private void actionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actionButtonActionPerformed
         // TODO add your handling code here:
+        
+        
+         model.insertRow(model.getRowCount(),new Object[]{datetf.getText(),nametf.getText() , regtf.getText() });
+    
+        
+        
        
      //   Student.setName(nameTxtField.getText());
      //   Student.setRegno(nameTxtField.getText());
@@ -372,6 +394,7 @@ public class AddStudent extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton actionButton;
+    private javax.swing.JTextField datetf;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -379,12 +402,11 @@ public class AddStudent extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField nameTxtField;
-    private javax.swing.JTextField regTxtField;
+    private javax.swing.JTextField nametf;
     private javax.swing.JButton regnoSearchBtn;
+    private javax.swing.JTextField regtf;
+    private javax.swing.JTable table;
     private javax.swing.JLabel titleLbl;
     // End of variables declaration//GEN-END:variables
 }
